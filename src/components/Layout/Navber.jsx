@@ -19,24 +19,25 @@ const Navber = () => {
   return (
     <header>
       <nav className='py-8'>
-        <div className="container flex justify-between gap-5">
-            <Link to="/" className=''>
+        <div className="container flex justify-between flex-wrap md:flex-nowrap gap-5">
+            <Link to="/" className='order-1'>
                         <img src="/Logo.png" alt="logo" />
                     </Link>
-             <div className='flex  bg-[#F1F1F1] items-center h-fit rounded-md w-full max-w-3xl'>
+             <div className='flex  bg-[#F1F1F1] items-center h-fit rounded-md w-full md:max-w-md xl:max-w-3xl order-3 md:order-2'>
                 <Input placeholder={"I'm looking for..."} className='border-none'/>
                <Button  className='rounded-l-none px-5'>
                  <IoSearch className='text-xl' />
                  </Button>  
              </div>
-             <div className='flex gap-10 ' >
-               <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal '> <FaRegUser /> Login </Link>
-               <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal '> <TiShoppingCart />My Cart </Link>
+             <div className='flex gap-5 md:gap-10 order-2 md:order-3 ' >
+               <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal '> <FaRegUser /> <span className='hidden md:block'>Login</span> </Link>
+               <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal '> <TiShoppingCart /><span className='hidden md:block'>My cart</span> </Link>
              </div>
         </div>
       </nav>
-      <div className='container'>
-       <ul className='flex gap-14 items-center justify-center px-5'> 
+      <div className='w-full pb-1.5 border-b border-b-[#EFEEEE]'>
+        <div className='container '>
+       <ul className='flex gap-14 items-center justify-center px-5 overflow-auto'> 
         {
                             categoris.map((item) => (
                                 <li key={item}>
@@ -46,6 +47,7 @@ const Navber = () => {
                         }
         </ul>
 
+      </div>
       </div>
     </header>
   )

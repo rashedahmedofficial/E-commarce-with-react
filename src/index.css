@@ -4,7 +4,7 @@
     --color-primary : #383838;
     --color-secendory : #394146;
     --color-brand : #0198E9;
-    --color-tag :linear-gradient(90deg,rgba(255, 122, 0, 1) 30%, rgba(255, 184, 0, 1) 100%) ;
+    --background-image-tag : linear-gradient(90deg,rgba(255, 122, 0, 1) 30%, rgba(255, 184, 0, 1) 100%) ;
 }
 
 @utility container{
@@ -14,4 +14,8 @@
 }
 body{
     font-family: "Poppins", sans-serif;
+}
+
+.sub-h{
+    @apply text-[26px] text-primary font-medium ;
 }
