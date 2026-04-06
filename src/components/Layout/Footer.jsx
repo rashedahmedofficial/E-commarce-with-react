@@ -51,12 +51,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <Link className='font-medium text-[20px] pb-6 text-primary'>CONTACT</Link>
-            <p className='pb-6'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+            <Link className='font-medium text-xl  text-primary'>CONTACT</Link>
+            <p className='py-6'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
             <div className='flex pb-12 items-center gap-4'>
               <div className='text-brand text-5xl'><FaHeadphonesAlt /></div>
               <div>
-                <h5 className='font-medium text-[20px] text-primary'>Have any question?</h5>
+                <h5 className='font-medium text-xl text-primary'>Have any question?</h5>
                 <p className='text-base font-normal text-secondary'>099 456 789</p>
               </div>
             </div>
