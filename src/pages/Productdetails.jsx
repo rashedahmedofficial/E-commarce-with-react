@@ -1,0 +1,252 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { NextArrow, PrevArrow } from '../components/ui/Arrow';
+import { IoChevronForward, IoStar, IoStarSharp } from 'react-icons/io5';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import { Link } from 'react-router';
+import { FaCheck, FaCheckCircle, FaHeart } from 'react-icons/fa';
+import Button from '../components/ui/button';
+
+const Productdetails = () => {
+  const [selectedSize, setSelectedSize] = useState("xl");
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  let sliderRef1 = useRef(null);
+  let sliderRef2 = useRef(null);
+
+  useEffect(() => {
+    setNav1(sliderRef1);
+    setNav2(sliderRef2);
+  }, []);
+
+  const increaseQty = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decreaseQty = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const settingsLarge = {
+    dots: false,
+    slidesToShow: 1,
+    arrows: false,
+  };
+
+  const settingSmalls = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    vertical: true,
+    verticalSwiping: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  const SIZES = ["S","M","L","X", "XL", "XXL"];
+  return (
+    <section className="py-14">
+      <div className="container grid grid-cols-2 gap-25 justify-between">
+        {/* Product Details image */}
+        <div>
+          <p className="flex pb-6 items-center text-base text-primary">
+            Home{" "}
+            <span>
+              <IoChevronForward />
+            </span>{" "}
+            Men’s fashion{" "}
+            <span>
+              {" "}
+              <IoChevronForward />
+            </span>{" "}
+            <span className="text-secondary/70">
+              Men's Stand Collar Leather Jacket{" "}
+            </span>
+          </p>
+          <div className="grid grid-cols-4 gap-10">
+            <Slider
+              className="max-w-xl col-span-3"
+              {...settingsLarge}
+              asNavFor={nav2}
+              ref={(slider) => (sliderRef1 = slider)}
+            >
+              <div>
+                <img src="/Features-1.png" alt="" className="w-full" />
+              </div>
+              <div>
+                <img src="/Features-2.png" alt="" className="w-full" />
+              </div>
+              <div>
+                <img src="/Features-3.png" alt="" className="w-full" />
+              </div>
+              <div>
+                <img src="/Features-4.png" alt="" className="w-full" />
+              </div>
+            </Slider>
+            <Slider
+              asNavFor={nav1}
+              ref={(Slider) => (sliderRef2 = slider)}
+              slidesToShow={4}
+              swipeToSlide={true}
+              focusOnSelect={true}
+              {...settingSmalls}
+            >
+              <div>
+                <img src="/Features-1.png" alt="" className="w-3/4" />
+              </div>
+              <div>
+                <img src="/Features-2.png" alt="" className="w-3/4" />
+              </div>
+              <div>
+                <img src="/Features-3.png" alt="" className="w-3/4" />
+              </div>
+              <div>
+                <img src="/Features-4.png" alt="" className="w-3/4" />
+              </div>
+            </Slider>
+          </div>
+          <div className="flex items-center gap-3 pt-5">
+            <h3>Share</h3>
+            <Link to="/" className="flex items-center gap-2">
+            <img src="/icon-1.png" alt="png" />
+            <img src="/icon-2.png" alt="png" />
+            <img src="/icon-3.png" alt="png" />
+            <img src="/icon-4.png" alt="png" />
+            <img src="/icon-5.png" alt="png" />
+            </Link>
+          </div>
+        </div>
+        {/* Product Short Details */}
+        <div className="pt-10">
+          <h2 className="font-medium text-26 text-primary max-w-[611px]">
+            Super Skinny Rib Trouser & Joggers for Men By Sowdagar Trouser
+          </h2>
+
+          {/* Star */}
+          <div className="flex gap-3 pt-5 pb-8 items-center">
+            <div className="flex items-center gap-1  ">
+              <span className="text-secondary ">4.0</span>
+
+              <IoStar className="text-2xl text-amber-300" />
+              <IoStar className="text-2xl text-amber-300" />
+              <IoStar className="text-2xl text-amber-300" />
+              <IoStar className="text-2xl text-amber-300" />
+              <IoStarSharp className="text-2xl text-gray-400" />
+              <span className="text-secondary">(223)</span>
+            </div>
+            <span className="text-secondary/20">|</span>
+            <div className="flex items-center gap-4">
+              <FaCheck className="text-green-500" />
+              <p className="text-base text-primary font-bold">
+                4,320 <span className="font-normalnormal">Sold</span>
+              </p>
+            </div>
+            <span className="text-secondary/20">|</span>
+            <div className="flex items-center gap-4">
+              <FaHeart className="text-secondary/30" />
+              <p className="text-lg text-brand ">Add to wishlist</p>
+            </div>
+          </div>
+
+          {/* Price  */}
+
+          <div className="flex items-center gap-5 pb-6">
+            <h3 className="text-brand text-4xl font-semibold">$976.33</h3>
+            <p className="text-xl text-secondary/40 line-through">$1,020.99</p>
+            <p className="bg-badge py-1 px-3 text-white">20%</p>
+          </div>
+
+          {/* Code & details */}
+
+          <div className="flex gap-3 items-center text-primary/50 text-base pb-8">
+            <p className="">
+              <span className="font-bold text-primary">SKU:</span> 12314124124
+            </p>
+            <span className="flex gap-1 items-center">
+              <FaCheckCircle className="text-green-500" />
+              In Stock
+            </span>
+          </div>
+
+          {/* details */}
+
+          <div className="max-w-[598px] pb-8">
+            <h4 className="text-lg text-secondary font-normal pb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam
+            </h4>
+            <ol className="list-disc pl-5 space-y-3 text-secondary">
+              <li>Direct Full Array</li>
+              <li>Quantum Dot Technology</li>
+              <li>Ambient Mode</li>
+              <li>One Remote Control</li>
+            </ol>
+          </div>
+
+          {/* Size */}
+
+          <div className="flex gap-4 items-center pb-8">
+            <p className="text-lg">Size:</p>
+            {SIZES.map((item) => (
+              <label
+                key={item}
+                htmlFor={item}
+                className={`uppercase cursor-pointer py-1 px-3 border border-secondary/10 ${selectedSize === item && "bg-brand text-white"} `}
+              >
+                {item}
+                <input
+                  onChange={(e) => setSelectedSize(e.target.value)}
+                  value={item}
+                  type="radio"
+                  name="size"
+                  id={item}
+                  hidden
+                />
+              </label>
+            ))}
+          </div>
+          {/* Quantity */}
+
+          <div className="flex items-center gap-9">
+            <div className="gap-2 flex items-center">
+              <h3 className="text-secondary/80 ">Quantity: </h3>
+              <div className="flex items-center bg-secondary/30 rounded-md overflow-hidden ">
+                <button
+                  onClick={decreaseQty}
+                  className="px-3 py-2 text-lg text-secondary/50"
+                >
+                  {" "}
+                  -
+                </button>
+
+                <span className="px-3 py-1.5 bg-white text-lg font-medium">
+                  {" "}
+                  {quantity}
+                </span>
+
+                <button
+                  onClick={increaseQty}
+                  className="px-3 py-2 text-lg text-secondary/50"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <Button className="bg-brand text-white font-medium text-xl py-3 px-11 rounded-md">
+              Add Cart
+            </Button>
+            <Button className="!text-brand bg-brand/10 font-bold border-2 border-brand text-xl py-3 px-11 rounded-md">
+              Buy Now
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+export default Productdetails
