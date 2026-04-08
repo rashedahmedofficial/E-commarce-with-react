@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
 import { useEffect, useRef, useState } from "react";
 import { NextArrow, PrevArrow } from "../components/ui/Arrow";
 import { IoStar } from "react-icons/io5";

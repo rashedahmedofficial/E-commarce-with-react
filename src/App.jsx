@@ -6,6 +6,7 @@ import Shop from './pages/Shop'
 import Productdetails from './pages/Productdetails'
 import Login from './pages/Login'
 import Registration from './pages/Registration'
+import Api from './pages/Api'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/shop" element={<Shop />}/>
         <Route path="/shop/:id" element={<Productdetails/>}/>
         </Route>
+        <Route path="/api" element={<Api/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/registration" element={<Registration/>}/>
         
