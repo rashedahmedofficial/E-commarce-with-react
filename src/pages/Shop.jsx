@@ -2,8 +2,12 @@ import React from 'react'
 import { Link } from 'react-router'
 import Select from '../components/ui/Select'
 import Productcard from '../components/ui/Productcard'
+import { useGetProductsQuery } from '../services/api'
 
 const Shop = () => {
+    const { data, isLoading, error } = useGetProductsQuery();
+    
+
     const sortOptions = [
         {
             value: "newest_items",
@@ -52,18 +56,13 @@ const Shop = () => {
                         </div>
                     </div>
                     <div className='grid grid-cols-3 gap-6 mt-6'>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-1.png" price="৳10500"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-3.png" price="৳10000" />
-                        <Productcard title="Women fashion dress set" img="/Features-2.png" price="৳10500"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-4.png" price="৳5000"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-5.png" price="৳10579" />
-                        <Productcard title="Women fashion dress set" img="/Features-6.png" price="৳9"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-7.png" price="৳10599"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-9.png" price="৳9999"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-11.png" price="৳90500"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-12.png" price="৳80500" />
-                        <Productcard title="Women fashion dress set" img="/Features-14.png" price="৳500"/>
-                        <Productcard title="Headrest Executive Mesh Office Chairset" img="/Features-13.png" price="৳70500"/>
+                        {isLoading? (
+                            <p>Loading products ....</p>
+                        ): (
+                            data?.products?.map((item) => (
+                                <Productcard key={item.id} data={item}  />
+                            )) 
+                            )}
                     </div>
                 </div>
             </div>

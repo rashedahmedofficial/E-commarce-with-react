@@ -37,7 +37,7 @@ const Navber = () => {
       </nav>
       <div className='w-full pb-1.5 border-b border-b-[#EFEEEE]'>
         <div className='container '>
-       <ul className='flex gap-14 items-center justify-center px-5 overflow-auto'> 
+       <ul className='flex gap-14 items-center  px-5 overflow-auto'> 
         {
                             categoris.map((item) => (
                                 <li key={item}>

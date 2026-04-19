@@ -6,7 +6,7 @@ const Banner = () => {
         <section className='pt-3 pb-12'>
             <div className="container flex gap-4 md:gap-7">
                 <div className='w-[68%]'>
-                    <Link to="/"> <img className='w-full' src="/Banner-1.png" alt="Banner-1" /> </Link>
+                    <Link to="/shop"> <img className='w-full' src="/Banner-1.png" alt="Banner-1" /> </Link>
                 </div>
                 <div className='w-[33%] flex flex-col space-y-4 md:space-y-7'>
                     <Link to="/">
