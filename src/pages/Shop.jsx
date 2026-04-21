@@ -1,21 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import Select from '../components/ui/Select'
 import Productcard from '../components/ui/Productcard'
 import { useGetProductsQuery } from '../services/api'
+import { Pagination } from '../components/ui/pagination'
 
 const Shop = () => {
-    const { data, isLoading, error } = useGetProductsQuery();
+    const [Limit ,setLimit] = useState(30);
+     const [pageNum, setPageNum] = useState(1);
+     const [totalPage, setTotalPage] = useState(1);
+    const { data, isLoading, error } = useGetProductsQuery({Limit ,  skip:Limit * (pageNum - 1),});
+     useEffect(() => {
+    if (data?.total) {
+      setTotalPage(Math.ceil(data?.total / Limit));
+    }
+  }, [data?.total, Limit]);
     
 
     const sortOptions = [
         {
-            value: "newest_items",
-            label: "Newest Items"
+            value: "10",
+            label: "10"
         },
         {
-            value: "oldest_items",
-            label: "Oldest Items"
+            value: "20",
+            label: "20"
+        },
+        {
+            value: "40",
+            label: "40"
+        },
+        {
+            value: "50",
+            label: "50"
+        },
+        {
+            value: "80",
+            label: "80"
         }
     ]
     const categories = [
@@ -49,13 +70,13 @@ const Shop = () => {
                 </div>
                 <div className="col-span-9">
                     <div className='flex items-center justify-between'>
-                        <p className='font-medium text-lg text-[#424241]/50'>Showing  <span className='text-secondary'>20</span> of <span className='text-secondary'>160</span> product</p>
+                        <p className='font-medium text-lg text-[#424241]/50'>Showing  <span className='text-secondary'>{Limit * (pageNum - 1) + 1} - {data?.total > Limit * pageNum ? Limit * pageNum : data?.total}</span> of <span className='text-secondary'>{data?.total}</span> product</p>
                         <div className='w-fit flex items-center gap-7'>
-                            <p>Sort By:</p>
-                            <Select className="max-w-44" options={sortOptions} />
+                            <p>Shown Product:</p>
+                            <Select className="max-w-20" options={sortOptions} value={Limit} onChange={(e)=>setLimit(e.target.value)} />
                         </div>
                     </div>
-                    <div className='grid grid-cols-3 gap-6 mt-6'>
+                    <div className='grid grid-cols-4 gap-6 mt-6'>
                         {isLoading? (
                             <p>Loading products ....</p>
                         ): (
@@ -64,6 +85,9 @@ const Shop = () => {
                             )) 
                             )}
                     </div>
+                    <Pagination handelChange={(num) => setPageNum(num)}
+            pageNum={pageNum}
+            totalPage={totalPage}/>
                 </div>
             </div>
         </main>
