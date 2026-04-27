@@ -7,9 +7,15 @@ export const apiService =createApi ({
   }),
   endpoints: (build) =>({
     getProducts : build.query({
-        query : ({ Limit , skip}) => `/products?limit=${Limit}&skip=${skip}`,
+        query : ({ category , Limit , skip}) =>  `/products${category? `/category/${category}` : "" }?Limit=${Limit}&skip=${skip}`,
     }),
+    getcategories : build.query({
+      query : ()=> "/products/category-list",
+    }),
+    getProductsDetails : build.query({
+      query: (id)=> `/products/${id}`
+    })
   }),
 });
 
-export const { useGetProductsQuery } = apiService;
+export const { useGetProductsQuery , useGetcategoriesQuery , useGetProductsDetailsQuery } = apiService;

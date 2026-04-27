@@ -1,16 +1,22 @@
 import React from "react";
-import Slider from "react-slick";
+import SlickSlider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useEffect, useRef, useState } from "react";
 import { NextArrow, PrevArrow } from "../components/ui/Arrow";
 import { IoStar } from "react-icons/io5";
 import { FaCheck, FaCheckCircle } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
+import { BsSliders2Vertical } from "react-icons/bs";
+import { useGetProductsDetailsQuery } from "../services/api";
 
 
 
+const Slider = SlickSlider.default || SlickSlider;
 const Productdetails = () => {
+  const { id } = useParams();
+  const { data } = useGetProductsDetailsQuery(id);
+
       const [selectedSize , setselectedSize] = useState("S")
       const [val , setVal] = useState(1)
       const [nav1, setNav1] = useState(null);
@@ -73,55 +79,38 @@ const Productdetails = () => {
          <div className='grid grid-cols-4 gap-10'>
             
       
-      <Slider className='max-w-xl col-span-3'{...settingsLarge} asNavFor={nav2} ref={Slider => (sliderRef1 = Slider)}>
-        <div>
-          <img src="/image (5).png" alt="" className='w-full'/>
+      <Slider className='max-w-xl col-span-3'{...settingsLarge} asNavFor={nav2} ref={slider => (sliderRef1 = slider)}>
+        {
+          data?.images.map((item)=>(
+        <div key={item}>
+          <img src={item} alt="" className='w-full'/>
         </div>
-        <div>
-          <img src="/image (4).png" alt="" className='w-full'/>
-        </div>
-        <div>
-          <img src="/image (7).png" alt="" className='w-full'/>
-        </div>
-        <div>
-          <img src="/Image Placeholder (6).png" alt="" className='w-full'/>
-        </div>
-      
-        
+          )) } 
       </Slider>
        
       <Slider
         asNavFor={nav1}
-        ref={Slider => (sliderRef2 = Slider)}
+        ref={slider => (sliderRef2 = slider)}
         slidesToShow={2}
         swipeToSlide={true}
         focusOnSelect={true}
-        {...settingsmall}
-        
-      >
-        <div>
-          <img src="/image (5).png" alt="" className='w-3/4'/>
+        {...settingsmall} >
+          {
+            data?.images.map((item)=>(
+              <div key={item}>
+          <img src={item} alt="" className='w-3/4'/>
         </div>
-        <div>
-          <img src="/image (4).png" alt="" className='w-3/4'/>
-        </div>
-        <div>
-          <img src="/image (7).png" alt="" className='w-3/4'/>
-        </div>
-        <div>
-          <img src="/Image Placeholder (6).png" alt="" className='w-3/4'/>
-        </div>
+
+            ))}
       </Slider>
-      
-         </div>
+       </div>
          
          <div >
           <div className='border-b pb-6 border-[#EAEAEA]  '>
             
-            <p className='text-primary font-medium text-2xl w-[610px]'>Super Skinny Rib Trouser & Joggers for Men By Sowdagar Trouser</p>
-
+          <h2 className="text-4xl text-primary">{data?.title}</h2>
             <div className='flex items-center gap-2 my-6'>
-              <p className='text-xl'>4.0</p>
+             
                <IoStar className='text-xl text-yellow-500'/>
                <IoStar className='text-xl text-yellow-500'/>
                <IoStar className='text-xl text-yellow-500'/>
@@ -145,9 +134,9 @@ const Productdetails = () => {
             </div>
 
             <div className='my-8 flex  items-center gap-4'>
-              <p className='text-4xl font-semibold text-brand '>$976.33</p>
+              <p className='text-4xl font-semibold text-brand '>{data?.price}</p>
               <p className='line-through text-xl text-primary/50'>$1,020.99</p>
-              <p className='bg-badge px-2.5 py-1 text-white'>20%</p>
+              <p className='bg-badge px-2.5 py-1 text-white'>{data?.discountPercentage}</p>
             </div>
 
             <div className='flex gap-6 items-center'>
@@ -160,14 +149,13 @@ const Productdetails = () => {
             </div>
           </div>
           <div className='my-8'>
-            <p className='text-xl w-[640px] text-primary'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-               et dolore magna aliqua. Ut enim ad minim veniam</p>
+            <p className='text-xl w-[640px] text-primary'>{data?.description}</p>
 
                <div className='ml-7 my-4 flex '>
                    <ol className='list-disc space-y-4 '>
                     {
                       catagories.map((item)=>(
-                        <li className='text-primary'>{item}</li>
+                        <li key={item} className='text-primary'>{item}</li>
 
                       ))
                     }
