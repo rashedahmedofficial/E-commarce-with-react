@@ -6,8 +6,8 @@ import { useGetProductsQuery } from '../../services/api'
 
 const Vehicle = () => {
    const { data, isLoading, error } = useGetProductsQuery({
-    Limit: 4,
-    skip:0,
+    Limit : 4 ,
+    skip:1,
     category: "vehicle",
   });
   return (

@@ -14,8 +14,11 @@ export const apiService =createApi ({
     }),
     getProductsDetails : build.query({
       query: (id)=> `/products/${id}`
-    })
+    }),
+    searchProduct :  build.query({
+      query: (search)=> `/products/search?q=${search}`
+    }),
   }),
 });
 
-export const { useGetProductsQuery , useGetcategoriesQuery , useGetProductsDetailsQuery } = apiService;
+export const { useGetProductsQuery , useGetcategoriesQuery , useGetProductsDetailsQuery , useLazySearchProductQuery} = apiService;
