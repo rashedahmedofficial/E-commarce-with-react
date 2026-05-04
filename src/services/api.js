@@ -18,7 +18,19 @@ export const apiService =createApi ({
     searchProduct :  build.query({
       query: (search)=> `/products/search?q=${search}`
     }),
-  }),
+     login : build.mutation({
+      query: (data) => ({
+       url: `/auth/login`,
+       method: "POST",
+       body: data,
+      }),
+  }), 
+  user : build.query({
+      query: (id)=> ({
+        url: `/auth/me`,
+      }),
+    }),
+}),
 });
 
-export const { useGetProductsQuery , useGetcategoriesQuery , useGetProductsDetailsQuery , useLazySearchProductQuery} = apiService;
+export const { useGetProductsQuery , useGetcategoriesQuery , useGetProductsDetailsQuery , useLazySearchProductQuery ,useLoginMutation, useUserQuery } = apiService ;

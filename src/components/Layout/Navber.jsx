@@ -67,7 +67,7 @@ const Navber = () => {
           </div>
 
           <div className='flex gap-5 md:gap-10 order-2 md:order-3'>
-            <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal'><FaRegUser /> <span className='hidden md:block'>Login</span></Link>
+            <Link to="/login" className='flex gap-1.5 items-center text-base text-primary font-normal'><FaRegUser /> <span className='hidden md:block'>Login</span></Link>
             <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal'><TiShoppingCart /><span className='hidden md:block'>My cart</span></Link>
           </div>
         </div>
