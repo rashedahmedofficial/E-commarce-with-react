@@ -7,9 +7,11 @@ import { FaRegUser } from 'react-icons/fa'
 import { TiShoppingCart } from 'react-icons/ti'
 import { useGetcategoriesQuery, useLazySearchProductQuery } from '../../services/api'
 import SearchDropdown from '../ui/Searchdropdown'
+import { getCartCount } from '../../services/cart'
+import { FaBasketShopping } from 'react-icons/fa6'
 
 
-const Navber = () => {
+const Navber = ({ setOpenCart }) => {
   const { data } = useGetcategoriesQuery();
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -40,6 +42,19 @@ const Navber = () => {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  // My Cart
+
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCount(getCartCount());
+  }, 500);
+
+  return () => clearInterval(interval);
+}, []);
+
+
   return (
     <header >
       <nav className='py-8'>
@@ -68,7 +83,13 @@ const Navber = () => {
 
           <div className='flex gap-5 md:gap-10 order-2 md:order-3'>
             <Link to="/login" className='flex gap-1.5 items-center text-base text-primary font-normal'><FaRegUser /> <span className='hidden md:block'>Login</span></Link>
-            <Link to="/" className='flex gap-1.5 items-center text-base text-primary font-normal'><TiShoppingCart /><span className='hidden md:block'>My cart</span></Link>
+            <div onClick={() => setOpenCart?.(true)} className="relative flex gap-1.5 cursor-pointer items-center">
+              <FaBasketShopping className="text-xl" />{" "}
+              <span className="hidden md:block">My Cart</span>{" "}
+              <span className=" w-5 h-5 bg-red-500 flex items-center justify-center rounded-full text-white text-[12px]">
+                {count}
+              </span>
+            </div>
           </div>
         </div>
       </nav>

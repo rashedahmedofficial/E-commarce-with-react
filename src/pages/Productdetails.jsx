@@ -9,6 +9,8 @@ import { IoMdHeart } from "react-icons/io";
 import { Link, useParams } from "react-router";
 import { BsSliders2Vertical } from "react-icons/bs";
 import { useGetProductsDetailsQuery } from "../services/api";
+import Button from "../components/UI/Button";
+import { addToCart } from "../services/cart";
 
 
 
@@ -72,7 +74,12 @@ const Productdetails = () => {
       
    }
 
- 
+     // Cart
+ const [quantity, setQuantity] = useState(1);
+  const [showToast, setShowToast] = useState(false);
+const [selectedProduct, setSelectedProduct] = useState(null);
+
+
   return (
    <section className='py-14'>
       <div className="container grid grid-cols-2 gap-28">
@@ -135,7 +142,7 @@ const Productdetails = () => {
 
             <div className='my-8 flex  items-center gap-4'>
               <p className='text-4xl font-semibold text-brand '>{data?.price}</p>
-              <p className='line-through text-xl text-primary/50'>$1,020.99</p>
+              <p className='line-through text-xl text-primary/50'>{data?.price}</p>
               <p className='bg-badge px-2.5 py-1 text-white'>{data?.discountPercentage}</p>
             </div>
 
@@ -187,7 +194,28 @@ const Productdetails = () => {
             <button onClick={plus} className='bg-[#EFEFEF] px-4 py-2 text-xl '>+</button>
            </div>
             
-            <Link className='bg-brand text-white px-6 py-2 rounded '>Add cart</Link>
+            <Button
+                      onClick={() => {
+                        addToCart({
+                          id: data.id,
+                          title: data.title,
+                          price: data.price,
+                          thumbnail: data.thumbnail,
+                          quantity: quantity,
+                       });
+
+                        setSelectedProduct(data);
+                        setShowToast(true);
+
+                        setTimeout(() => {
+                          setShowToast(false);
+                        }, 2000);
+                      }}
+
+                      
+                      className="bg-brand text-white font-medium text-xl py-3 px-11 rounded-md">
+                    Add Cart
+                  </Button>
             <Link className='border-2 border-blue-400 px-6 py-1.5 bg-blue-50 font-semibold text-blue-400 rounded'>Buy Now</Link>
           </div>
          </div>
