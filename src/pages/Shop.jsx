@@ -5,6 +5,7 @@ import Productcard from '../components/ui/Productcard'
 import { useGetcategoriesQuery, useGetProductsQuery } from '../services/api'
 import { Pagination } from '../components/ui/pagination'
 
+
 const Shop = () => {
     const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
@@ -44,15 +45,7 @@ const Shop = () => {
             label: "80"
         }
     ]
-    // const categories = [
-    //     { title: "Health & Household",},
-    //     { title: "Kids Fashion", },
-    //     {     title: "Toys", },
-    //     {  title: "Groceries",   },
-    //     {    title: "Men Fashion", },
-    //     {    title: "Women’s Fashion", },
-    //     {    title: "Stationary & Books",  }
-    // ]
+
     return (
         <main className='py-12'>
             <div className="container grid grid-cols-12 gap-14">

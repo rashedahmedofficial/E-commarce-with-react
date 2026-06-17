@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../components/ui/input'
 import { Link } from 'react-router'
-import Button from '../components/ui/button'
+import Button from '../components/ui/Button'
 
 const Registration = () => {
   return (

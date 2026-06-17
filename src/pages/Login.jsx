@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Input from '../components/ui/input'
 import { Link, useNavigate } from 'react-router'
-import Button from '../components/ui/button'
 import { useLoginMutation } from '../services/api'
+import Button from '../components/ui/Button'
 
 const Login = () => {
   const navigate = useNavigate();

@@ -9,7 +9,6 @@ import { IoMdHeart } from "react-icons/io";
 import { Link, useParams } from "react-router";
 import { BsSliders2Vertical } from "react-icons/bs";
 import { useGetProductsDetailsQuery } from "../services/api";
-import Button from "../components/UI/Button";
 import { addToCart } from "../services/cart";
 
 const Slider = SlickSlider.default || SlickSlider;
