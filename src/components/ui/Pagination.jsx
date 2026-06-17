@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
  
-export function Pagination({ handelChange, pageNum, totalPage }) {
+function Pagination({ handelChange, pageNum, totalPage }) {
  const next = () => {
     if (pageNum === totalPage) return;
 
@@ -48,4 +48,7 @@ export function Pagination({ handelChange, pageNum, totalPage }) {
       </Button>
     </div>
   );
+
 }
+
+export default Pagination

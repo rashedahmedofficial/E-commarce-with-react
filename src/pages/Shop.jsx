@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router'
 import Select from '../components/ui/Select'
 import Productcard from '../components/ui/Productcard'
 import { useGetcategoriesQuery, useGetProductsQuery } from '../services/api'
-import { Pagination } from '../components/ui/pagination'
+import Pagination from '../components/ui/pagination'
 
 
 const Shop = () => {

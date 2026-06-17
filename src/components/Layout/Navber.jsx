@@ -2,14 +2,13 @@ import React, { useEffect, useState, useRef } from 'react'
 import Input from '../ui/input'
 import { IoSearch } from 'react-icons/io5'
 import { Link } from 'react-router'
-import Button from '../ui/button'
 import { FaRegUser } from 'react-icons/fa'
 import { TiShoppingCart } from 'react-icons/ti'
 import { useGetcategoriesQuery, useLazySearchProductQuery } from '../../services/api'
 import SearchDropdown from '../ui/Searchdropdown'
 import { getCartCount } from '../../services/cart'
 import { FaBasketShopping } from 'react-icons/fa6'
-
+import Button from "../../components/ui/Button"
 
 const Navber = ({ setOpenCart }) => {
   const { data } = useGetcategoriesQuery();
