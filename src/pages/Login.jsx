@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router'
 import { useLoginMutation } from '../services/api'
 import Button from '../components/ui/Button'
 
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const Login = () => {
        <div>
           <div className="flex flex-col items-center justify-center h-screen">
       <div className="w-full max-w-md bg-white border-b-2-[#6367FF] rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Login</h2>
+        <h2 className="text-2xl flex justify-center font-bold text-gray-900 mb-4">Login</h2>
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
          <Input type='email' label="Email " placeholder="Enter your Email"  onChange={(e) =>
                 setLoginData((prev) => ({ ...prev, username: e.target.value }))  } />
